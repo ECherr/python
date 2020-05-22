@@ -11,13 +11,6 @@ from urllib.request import Request
 from urllib.error import URLError
 from urllib.parse import urlencode
 
-#
-# timer = time.perf_counter()
-
-#
-# API_KEY = 'Sy1nNGgsCo7YG8eXWKUjE8Xj'
-# SECRET_KEY = '1bBkBkK3404NNPttOOQycDh8mxGg8Zhp'
-
 AUDIO_FILE = './audio/record.wav'
 FORMAT = AUDIO_FILE[-3:]
 
