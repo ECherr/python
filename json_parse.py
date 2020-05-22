@@ -5,6 +5,7 @@ def read_result(filePath = "./result/result.txt"):
         dict = json.loads(f.read().strip())
         print('识别成功，内容为：' + dict['result'][0])
         music = str(dict['result'][0]).split('播放')[1]
+        return music
 
 def main():
     read_result()
