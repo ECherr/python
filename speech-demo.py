@@ -82,13 +82,8 @@ def fetch_token():
 
 """ TOKEN end   """
 
-if __name__ == '__main__':
-    timer = time.perf_counter
 
-    record_audio("./audio/record.wav", record_second=5)
-
-    token = fetch_token()
-
+def asr_json():
     speech_data = []
     with open(AUDIO_FILE, 'rb') as speech_file:
         speech_data = speech_file.read()
@@ -129,6 +124,15 @@ if __name__ == '__main__':
     # print(result_str)
     with open("./result/result.txt","w") as of:
         of.write(result_str)
+
+if __name__ == '__main__':
+    timer = time.perf_counter
+
+    record_audio("./audio/record.wav", record_second=5)
+
+    token = fetch_token()
+
+    asr_json()
 
     dict = json.loads(read_result())
     print('当前识别的内容为：' + dict['result'][0])
