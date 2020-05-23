@@ -4,12 +4,19 @@ import base64
 import time
 
 from pyaudio_record import record_audio
-from jason_parse import read_result
+from json_parse import read_result
 
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError
 from urllib.parse import urlencode
+
+#
+# timer = time.perf_counter()
+
+#
+# API_KEY = 'Sy1nNGgsCo7YG8eXWKUjE8Xj'
+# SECRET_KEY = '1bBkBkK3404NNPttOOQycDh8mxGg8Zhp'
 
 AUDIO_FILE = './audio/record.wav'
 FORMAT = AUDIO_FILE[-3:]
@@ -77,6 +84,8 @@ def fetch_token():
 
 
 def asr_json():
+    token = fetch_token()
+
     speech_data = []
     with open(AUDIO_FILE, 'rb') as speech_file:
         speech_data = speech_file.read()
@@ -118,14 +127,15 @@ def asr_json():
     with open("./result/result.txt","w") as of:
         of.write(result_str)
 
-if __name__ == '__main__':
-    timer = time.perf_counter
-
+def main():
     record_audio("./audio/record.wav", record_second=5)
-
-    token = fetch_token()
 
     asr_json()
 
-    dict = json.loads(read_result())
-    print('当前识别的内容为：' + dict['result'][0])
+    read_result()
+
+
+if __name__ == '__main__':
+    timer = time.perf_counter
+    main()
+
